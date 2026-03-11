@@ -93,7 +93,8 @@ const products: Product[] = [
     stock: "In Stock",
     rating: 4.8,
     featured: true,
-    image: "/gallery/1.jpeg",
+    image:
+      "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=80",
     description:
       "Healthy neem sapling ideal for homes, roadsides, and farms. Suitable for long-term shade and medicinal value.",
   },
@@ -107,7 +108,8 @@ const products: Product[] = [
     stock: "In Stock",
     rating: 4.9,
     featured: true,
-    image: "/gallery/2.jpeg",
+    image:
+      "https://images.unsplash.com/photo-1591073113125-e46713c829ed?auto=format&fit=crop&w=1200&q=80",
     description:
       "Fruit-bearing mango plant suitable for gardens and orchards. A strong choice for home and farm plantations.",
   },
@@ -120,7 +122,8 @@ const products: Product[] = [
     size: "3.5 ft",
     stock: "In Stock",
     rating: 4.7,
-    image: "/gallery/3.jpeg",
+    image:
+      "https://images.unsplash.com/photo-1563114773-84221bd62daa?auto=format&fit=crop&w=1200&q=80",
     description:
       "Compact guava plant perfect for home gardens and small farms with reliable fruit growth.",
   },
@@ -133,7 +136,8 @@ const products: Product[] = [
     size: "5 ft",
     stock: "In Stock",
     rating: 4.6,
-    image: "/gallery/4.jpeg",
+    image:
+      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80",
     description:
       "Elegant decorative tree for boundaries, villas, layouts, and gardens.",
   },
@@ -146,7 +150,8 @@ const products: Product[] = [
     size: "5 ft",
     stock: "Low Stock",
     rating: 4.8,
-    image: "/gallery/5.jpeg",
+    image:
+      "https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1200&q=80",
     description:
       "Strong coconut sapling for farms, resorts, and large spaces, ideal for long-term value planting.",
   },
@@ -160,7 +165,8 @@ const products: Product[] = [
     stock: "Pre-Book",
     rating: 4.9,
     featured: true,
-    image: "/gallery/6.jpeg",
+    image:
+      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80",
     description:
       "Traditional banyan tree for temples, campuses, parks, and open lands.",
   },
@@ -173,7 +179,8 @@ const products: Product[] = [
     size: "4 ft",
     stock: "In Stock",
     rating: 4.7,
-    image: "/gallery/7.jpeg",
+    image:
+      "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=1200&q=80",
     description:
       "Healthy jamun plant suited for homes, farms, and avenue planting with seasonal fruit benefits.",
   },
@@ -186,7 +193,8 @@ const products: Product[] = [
     size: "4 ft",
     stock: "In Stock",
     rating: 4.7,
-    image: "/gallery/8.jpeg",
+    image:
+      "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1200&q=80",
     description: "Sweet sapota plant for backyard fruit gardens and nurseries.",
   },
   {
@@ -198,7 +206,8 @@ const products: Product[] = [
     size: "4 ft",
     stock: "In Stock",
     rating: 4.6,
-    image: "/gallery/9.jpeg",
+    image:
+      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80",
     description:
       "Strong tamarind sapling for farms, roadsides, and native planting with long lifespan and shade value.",
   },
@@ -212,7 +221,8 @@ const products: Product[] = [
     stock: "In Stock",
     rating: 4.8,
     featured: true,
-    image: "/gallery/10.jpeg",
+    image:
+      "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1200&q=80",
     description:
       "Healthy jackfruit plant suitable for home gardens and farms with strong tropical fruit demand.",
   },
