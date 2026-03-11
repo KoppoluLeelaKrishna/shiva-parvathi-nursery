@@ -27,8 +27,6 @@ import {
   Eye,
   Globe,
   Building2,
-  Shield,
-  CalendarDays,
   BadgeIndianRupee,
   Clock3,
   Camera,
@@ -63,6 +61,7 @@ type CartItem = {
 
 const nurseryName = "Shiva Parvathi Nursery";
 const ownerName = "Koppolu Ramana";
+const ownerPhoto = "/gallery/owner.jpeg";
 const phoneNumber = "+919989149977";
 const whatsappNumber = "919989149977";
 const mapsLink = "https://maps.app.goo.gl/mFTcxUavfxQipUjj7?g_st=ic";
@@ -273,7 +272,7 @@ const faqs = [
   },
   {
     q: "Can I order through WhatsApp?",
-    a: "Yes. Customers can directly send their cart or booking request through WhatsApp.",
+    a: 'Yes. Customers can directly send their cart or booking request through WhatsApp.',
   },
   {
     q: "Do you have fruit trees and native trees?",
@@ -323,11 +322,9 @@ export default function Page() {
 
   useEffect(() => {
     if (galleryImages.length <= 1) return;
-
     const timer = setInterval(() => {
       setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
     }, 3500);
-
     return () => clearInterval(timer);
   }, []);
 
@@ -664,17 +661,40 @@ export default function Page() {
         <section id="about" className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
           <div className="grid gap-8 lg:grid-cols-2">
             <div className="rounded-[2rem] bg-white p-8 shadow-md">
-              <div className="mb-4 flex items-center gap-3">
+              <div className="mb-6 flex items-center gap-3">
                 <Store className="h-6 w-6 text-green-700" />
                 <h3 className="text-3xl font-bold">About Us</h3>
               </div>
-              <p className="leading-8 text-slate-600">
-                {nurseryName} is committed to providing healthy trees, fruit plants,
-                native trees, and decorative plants for homes, farms, layouts,
-                temples, schools, resorts, and plantation projects. We focus on
-                quality plants, reliable customer support, and easy ordering through
-                call and WhatsApp.
-              </p>
+
+              <div className="flex flex-col gap-6 sm:flex-row sm:items-start">
+                <img
+                  src={ownerPhoto}
+                  alt={ownerName}
+                  className="h-32 w-32 rounded-3xl object-cover shadow-md"
+                />
+
+                <div>
+                  <h4 className="text-2xl font-bold">{ownerName}</h4>
+                  <p className="text-sm font-medium text-green-700">
+                    Owner, {nurseryName}
+                  </p>
+                  <a
+                    href={`tel:${phoneNumber}`}
+                    className="mt-2 block text-sm text-slate-600 hover:text-green-700"
+                  >
+                    {phoneNumber}
+                  </a>
+
+                  <p className="mt-4 leading-7 text-slate-600">
+                    {nurseryName} is committed to providing healthy trees, fruit plants,
+                    native trees, and decorative plants for homes, farms, layouts,
+                    temples, schools, resorts, and plantation projects. We focus on
+                    quality plants, reliable customer support, and easy ordering through
+                    call and WhatsApp.
+                  </p>
+                </div>
+              </div>
+
               <div className="mt-6 space-y-3">
                 <div className="flex items-start gap-3">
                   <CheckCircle2 className="mt-1 h-5 w-5 text-green-700" />
