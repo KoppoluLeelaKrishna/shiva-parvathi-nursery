@@ -517,30 +517,7 @@ export default function Page() {
           </div>
         </section>
 
-        <section id="launch" className="mx-auto max-w-7xl px-4 pb-6 lg:px-8">
-          <div className="grid gap-4 md:grid-cols-4">
-            <div className="rounded-3xl bg-white p-5 shadow-sm">
-              <Camera className="mb-2 h-5 w-5 text-green-700" />
-              <p className="text-sm text-slate-500">Photos</p>
-              <p className="font-semibold">Replace sample images with real nursery photos</p>
-            </div>
-            <div className="rounded-3xl bg-white p-5 shadow-sm">
-              <Globe className="mb-2 h-5 w-5 text-green-700" />
-              <p className="text-sm text-slate-500">Domain</p>
-              <p className="font-semibold">Connect your official business domain</p>
-            </div>
-            <div className="rounded-3xl bg-white p-5 shadow-sm">
-              <ShieldCheck className="mb-2 h-5 w-5 text-green-700" />
-              <p className="text-sm text-slate-500">Deployment</p>
-              <p className="font-semibold">Deploy on Vercel for live global access</p>
-            </div>
-            <div className="rounded-3xl bg-white p-5 shadow-sm">
-              <Store className="mb-2 h-5 w-5 text-green-700" />
-              <p className="text-sm text-slate-500">Google Presence</p>
-              <p className="font-semibold">Add Search Console and Business Profile</p>
-            </div>
-          </div>
-        </section>
+
 
         <section className="mx-auto max-w-7xl px-4 pb-6 lg:px-8">
           <div className="grid gap-4 md:grid-cols-4">
