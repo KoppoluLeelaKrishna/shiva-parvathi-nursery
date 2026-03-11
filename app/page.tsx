@@ -464,7 +464,7 @@ export default function Page() {
               Official Nursery Website
             </p>
             <h2 className="text-4xl font-extrabold leading-tight md:text-6xl">
-              Healthy Trees, Fruit Plants, and Bulk Orders from Siva Parvathi
+              Healthy Trees, Fruit Plants, and Bulk Orders from Shiva Parvathi
               Nursery
             </h2>
             <p className="mt-5 max-w-xl text-lg text-slate-600">
