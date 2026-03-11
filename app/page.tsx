@@ -29,7 +29,9 @@ import {
   Building2,
   Shield,
   CalendarDays,
+  BadgeIndianRupee,
   Clock3,
+  Camera,
   ChevronLeft,
   ChevronRight,
 } from "lucide-react";
@@ -67,6 +69,9 @@ const mapsLink = "https://maps.app.goo.gl/mFTcxUavfxQipUjj7?g_st=ic";
 const address =
   "Sri Nanjundeshwara Industries Bangalore main road, Urdigere, Hanumanthapura, Cross, Koratagere, Karnataka 572129, India";
 
+const domainUrl = "https://shiva-parvathi-nursery.vercel.app";
+const googleBusinessProfileUrl = mapsLink;
+
 const businessHours = [
   { day: "Monday", time: "8:00 AM - 6:00 PM" },
   { day: "Tuesday", time: "8:00 AM - 6:00 PM" },
@@ -88,8 +93,7 @@ const products: Product[] = [
     stock: "In Stock",
     rating: 4.8,
     featured: true,
-    image:
-      "https://images.unsplash.com/photo-1473448912268-2022ce9509d8?auto=format&fit=crop&w=1200&q=80",
+    image: "/gallery/1.jpeg",
     description:
       "Healthy neem sapling ideal for homes, roadsides, and farms. Suitable for long-term shade and medicinal value.",
   },
@@ -103,8 +107,7 @@ const products: Product[] = [
     stock: "In Stock",
     rating: 4.9,
     featured: true,
-    image:
-      "https://images.unsplash.com/photo-1591073113125-e46713c829ed?auto=format&fit=crop&w=1200&q=80",
+    image: "/gallery/2.jpeg",
     description:
       "Fruit-bearing mango plant suitable for gardens and orchards. A strong choice for home and farm plantations.",
   },
@@ -117,8 +120,7 @@ const products: Product[] = [
     size: "3.5 ft",
     stock: "In Stock",
     rating: 4.7,
-    image:
-      "https://images.unsplash.com/photo-1563114773-84221bd62daa?auto=format&fit=crop&w=1200&q=80",
+    image: "/gallery/3.jpeg",
     description:
       "Compact guava plant perfect for home gardens and small farms with reliable fruit growth.",
   },
@@ -131,8 +133,7 @@ const products: Product[] = [
     size: "5 ft",
     stock: "In Stock",
     rating: 4.6,
-    image:
-      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80",
+    image: "/gallery/4.jpeg",
     description:
       "Elegant decorative tree for boundaries, villas, layouts, and gardens.",
   },
@@ -145,8 +146,7 @@ const products: Product[] = [
     size: "5 ft",
     stock: "Low Stock",
     rating: 4.8,
-    image:
-      "https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1200&q=80",
+    image: "/gallery/5.jpeg",
     description:
       "Strong coconut sapling for farms, resorts, and large spaces, ideal for long-term value planting.",
   },
@@ -160,8 +160,7 @@ const products: Product[] = [
     stock: "Pre-Book",
     rating: 4.9,
     featured: true,
-    image:
-      "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80",
+    image: "/gallery/6.jpeg",
     description:
       "Traditional banyan tree for temples, campuses, parks, and open lands.",
   },
@@ -174,8 +173,7 @@ const products: Product[] = [
     size: "4 ft",
     stock: "In Stock",
     rating: 4.7,
-    image:
-      "https://images.unsplash.com/photo-1471193945509-9ad0617afabf?auto=format&fit=crop&w=1200&q=80",
+    image: "/gallery/7.jpeg",
     description:
       "Healthy jamun plant suited for homes, farms, and avenue planting with seasonal fruit benefits.",
   },
@@ -188,10 +186,8 @@ const products: Product[] = [
     size: "4 ft",
     stock: "In Stock",
     rating: 4.7,
-    image:
-      "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1200&q=80",
-    description:
-      "Sweet sapota plant for backyard fruit gardens and nurseries.",
+    image: "/gallery/8.jpeg",
+    description: "Sweet sapota plant for backyard fruit gardens and nurseries.",
   },
   {
     id: 9,
@@ -202,10 +198,9 @@ const products: Product[] = [
     size: "4 ft",
     stock: "In Stock",
     rating: 4.6,
-    image:
-      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80",
+    image: "/gallery/9.jpeg",
     description:
-      "Strong tamarind sapling for farms, roadsides, and native planting.",
+      "Strong tamarind sapling for farms, roadsides, and native planting with long lifespan and shade value.",
   },
   {
     id: 10,
@@ -216,21 +211,34 @@ const products: Product[] = [
     size: "4 ft",
     stock: "In Stock",
     rating: 4.8,
-    image:
-      "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1200&q=80",
+    featured: true,
+    image: "/gallery/10.jpeg",
     description:
-      "Healthy jackfruit plant suitable for home gardens and farms.",
+      "Healthy jackfruit plant suitable for home gardens and farms with strong tropical fruit demand.",
   },
 ];
 
 const categories = ["All", "Fruit Trees", "Native Trees", "Decorative Trees"];
 
 const galleryImages = [
-  "/gallery/1.jpg",
-  "/gallery/2.jpg",
-  "/gallery/3.jpg",
-  "/gallery/4.jpg",
-  "/gallery/5.jpg",
+  "/gallery/1.jpeg",
+  "/gallery/2.jpeg",
+  "/gallery/3.jpeg",
+  "/gallery/4.jpeg",
+  "/gallery/5.jpeg",
+  "/gallery/6.jpeg",
+  "/gallery/7.jpeg",
+  "/gallery/8.jpeg",
+  "/gallery/9.jpeg",
+  "/gallery/10.jpeg",
+  "/gallery/11.jpeg",
+  "/gallery/12.jpeg",
+  "/gallery/13.jpeg",
+  "/gallery/14.jpeg",
+  "/gallery/15.jpeg",
+  "/gallery/16.jpeg",
+  "/gallery/17.jpeg",
+  "/gallery/18.jpeg",
 ];
 
 const reviews = [
@@ -288,14 +296,6 @@ export default function Page() {
     notes: "",
   });
 
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
-    }, 3500);
-
-    return () => clearInterval(timer);
-  }, []);
-
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
       const q = search.toLowerCase();
@@ -310,6 +310,26 @@ export default function Page() {
   }, [search, category]);
 
   const featuredProducts = products.filter((p) => p.featured);
+
+  useEffect(() => {
+    if (galleryImages.length <= 1) return;
+
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
+    }, 3500);
+
+    return () => clearInterval(timer);
+  }, []);
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) =>
+      prev === 0 ? galleryImages.length - 1 : prev - 1
+    );
+  };
 
   const addToCart = (product: Product) => {
     setCart((prev) => {
@@ -406,16 +426,6 @@ export default function Page() {
     }));
   };
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
-  };
-
-  const prevSlide = () => {
-    setCurrentSlide((prev) =>
-      prev === 0 ? galleryImages.length - 1 : prev - 1
-    );
-  };
-
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
   const totalPrice = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
 
@@ -436,8 +446,26 @@ export default function Page() {
     `Hello ${ownerName}, I want to book trees from ${nurseryName}.\n\nName: ${booking.name}\nPhone: ${booking.phone}\nLocation: ${booking.location}\nTree Type: ${booking.treeType}\nQuantity: ${booking.quantity}\nNotes: ${booking.notes}`
   );
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@type": "GardenStore",
+    name: nurseryName,
+    telephone: phoneNumber,
+    url: domainUrl,
+    sameAs: [mapsLink],
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: address,
+      addressCountry: "IN",
+    },
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <main className="min-h-screen bg-[#f6f8f3] text-slate-900">
         <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 lg:px-8">
@@ -549,8 +577,8 @@ export default function Page() {
 
           <div className="overflow-hidden rounded-[2rem] bg-white p-3 shadow-xl">
             <img
-              src="/gallery/1.jpg"
-              alt="Shiva Parvathi Nursery hero"
+              src={galleryImages[0]}
+              alt="Nursery hero"
               className="h-full min-h-[360px] w-full rounded-[1.5rem] object-cover"
             />
           </div>
@@ -559,7 +587,7 @@ export default function Page() {
         <section className="mx-auto max-w-7xl px-4 pb-6 lg:px-8">
           <div className="grid gap-4 md:grid-cols-4">
             <div className="rounded-3xl bg-white p-5 shadow-sm">
-              <Sprout className="mb-2 h-5 w-5 text-green-700" />
+              <Camera className="mb-2 h-5 w-5 text-green-700" />
               <p className="text-sm text-slate-500">Healthy Plants</p>
               <p className="font-semibold">
                 Quality nursery plants for home gardens, farms, and landscaping.
@@ -569,18 +597,18 @@ export default function Page() {
               <Truck className="mb-2 h-5 w-5 text-green-700" />
               <p className="text-sm text-slate-500">Bulk Orders</p>
               <p className="font-semibold">
-                Bulk tree supply for farms, schools, layouts, and plantations.
+                Bulk tree supply available for farms, schools, layouts, and plantations.
               </p>
             </div>
             <div className="rounded-3xl bg-white p-5 shadow-sm">
-              <Trees className="mb-2 h-5 w-5 text-green-700" />
+              <Sprout className="mb-2 h-5 w-5 text-green-700" />
               <p className="text-sm text-slate-500">Fruit Trees</p>
               <p className="font-semibold">
                 Mango, Guava, Sapota, Coconut, Jamun, Jackfruit, and more.
               </p>
             </div>
             <div className="rounded-3xl bg-white p-5 shadow-sm">
-              <ShieldCheck className="mb-2 h-5 w-5 text-green-700" />
+              <Trees className="mb-2 h-5 w-5 text-green-700" />
               <p className="text-sm text-slate-500">Native Trees</p>
               <p className="font-semibold">
                 Neem, Banyan, Tamarind, Ashoka, and other traditional trees.
@@ -680,6 +708,98 @@ export default function Page() {
           </div>
         </section>
 
+        <section id="services" className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
+          <div className="mb-6">
+            <h3 className="text-3xl font-bold">Services & Support</h3>
+            <p className="text-slate-500">
+              Reliable nursery support for individuals, farms, and institutions.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
+              <Sprout className="mb-3 h-6 w-6 text-green-700" />
+              <h4 className="text-xl font-bold">Healthy Plants</h4>
+              <p className="mt-2 text-slate-600">
+                Carefully maintained saplings suitable for home gardens, farms, and landscaping needs.
+              </p>
+            </div>
+
+            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
+              <Truck className="mb-3 h-6 w-6 text-green-700" />
+              <h4 className="text-xl font-bold">Bulk Order Support</h4>
+              <p className="mt-2 text-slate-600">
+                Suitable for avenue plantation, schools, resorts, farmhouses, and large nursery supply.
+              </p>
+            </div>
+
+            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
+              <Building2 className="mb-3 h-6 w-6 text-green-700" />
+              <h4 className="text-xl font-bold">Landscape & Institutional Supply</h4>
+              <p className="mt-2 text-slate-600">
+                Helpful for layouts, temples, schools, offices, and commercial green projects.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
+              <Clock3 className="mb-3 h-6 w-6 text-green-700" />
+              <h4 className="text-xl font-bold">Business Hours</h4>
+              <div className="mt-3 space-y-2 text-sm text-slate-600">
+                {businessHours.map((item) => (
+                  <div key={item.day} className="flex justify-between gap-4">
+                    <span>{item.day}</span>
+                    <span>{item.time}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
+              <Globe className="mb-3 h-6 w-6 text-green-700" />
+              <h4 className="text-xl font-bold">Official Website</h4>
+              <p className="mt-2 text-slate-600">
+                Your nursery website is now live and globally accessible online.
+              </p>
+              <a
+                href={domainUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-block break-all text-sm font-semibold text-green-700 hover:underline"
+              >
+                {domainUrl}
+              </a>
+            </div>
+
+            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
+              <Store className="mb-3 h-6 w-6 text-green-700" />
+              <h4 className="text-xl font-bold">Google Business</h4>
+              <p className="mt-2 text-slate-600">
+                Customers can also find photos, location, and reviews on Google Maps.
+              </p>
+              <a
+                href={googleBusinessProfileUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-block text-sm font-semibold text-green-700 hover:underline"
+              >
+                Open Google Maps Profile
+              </a>
+            </div>
+
+            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
+              <BadgeIndianRupee className="mb-3 h-6 w-6 text-green-700" />
+              <h4 className="text-xl font-bold">India + Global Reach</h4>
+              <p className="mt-2 text-slate-600">
+                Main customer focus can be India, while the website stays globally accessible.
+              </p>
+            </div>
+          </div>
+        </section>
+
         <section id="gallery" className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
           <div className="mb-6 flex items-center gap-3">
             <ImageIcon className="h-6 w-6 text-green-700" />
@@ -726,7 +846,7 @@ export default function Page() {
               ))}
             </div>
 
-            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+            <div className="mt-6 grid grid-cols-3 gap-4 sm:grid-cols-4 lg:grid-cols-6">
               {galleryImages.map((img, index) => (
                 <button
                   key={index}
@@ -764,110 +884,6 @@ export default function Page() {
               >
                 Ask on WhatsApp
               </a>
-            </div>
-          </div>
-        </section>
-
-        <section id="services" className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
-          <div className="mb-6">
-            <h3 className="text-3xl font-bold">Services & Support</h3>
-            <p className="text-slate-500">
-              Reliable nursery support for individuals, farms, and institutions.
-            </p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-              <Sprout className="mb-3 h-6 w-6 text-green-700" />
-              <h4 className="text-xl font-bold">Healthy Plants</h4>
-              <p className="mt-2 text-slate-600">
-                Carefully maintained saplings suitable for home gardens, farms, and landscaping needs.
-              </p>
-            </div>
-
-            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-              <Truck className="mb-3 h-6 w-6 text-green-700" />
-              <h4 className="text-xl font-bold">Bulk Order Support</h4>
-              <p className="mt-2 text-slate-600">
-                Suitable for avenue plantation, schools, resorts, farmhouses, and large nursery supply.
-              </p>
-            </div>
-
-            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-              <Building2 className="mb-3 h-6 w-6 text-green-700" />
-              <h4 className="text-xl font-bold">Landscape & Institutional Supply</h4>
-              <p className="mt-2 text-slate-600">
-                Helpful for layouts, temples, schools, offices, and commercial green projects.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
-          <div className="grid gap-6 md:grid-cols-3">
-            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-              <MapPin className="mb-3 h-6 w-6 text-green-700" />
-              <h4 className="text-xl font-bold">Service Area</h4>
-              <p className="mt-2 text-slate-600">
-                Main focus on Karnataka and India orders, with website access globally for inquiries and bulk discussions.
-              </p>
-            </div>
-
-            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-              <CalendarDays className="mb-3 h-6 w-6 text-green-700" />
-              <h4 className="text-xl font-bold">Advance Booking</h4>
-              <p className="mt-2 text-slate-600">
-                Customers can pre-book trees for future plantation drives, events, and site projects.
-              </p>
-            </div>
-
-            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-              <Shield className="mb-3 h-6 w-6 text-green-700" />
-              <h4 className="text-xl font-bold">Trusted Support</h4>
-              <p className="mt-2 text-slate-600">
-                Direct owner contact helps buyers discuss availability, quantities, and special project needs quickly.
-              </p>
-            </div>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
-          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
-            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-              <Clock3 className="mb-3 h-6 w-6 text-green-700" />
-              <h4 className="text-xl font-bold">Business Hours</h4>
-              <div className="mt-3 space-y-2 text-sm text-slate-600">
-                {businessHours.map((item) => (
-                  <div key={item.day} className="flex justify-between gap-4">
-                    <span>{item.day}</span>
-                    <span>{item.time}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-              <Globe className="mb-3 h-6 w-6 text-green-700" />
-              <h4 className="text-xl font-bold">India + Global Reach</h4>
-              <p className="mt-2 text-slate-600">
-                Main customer focus can be India, while the website stays globally accessible.
-              </p>
-            </div>
-
-            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-              <ShieldCheck className="mb-3 h-6 w-6 text-green-700" />
-              <h4 className="text-xl font-bold">Trusted Nursery</h4>
-              <p className="mt-2 text-slate-600">
-                Customers can directly call, visit, or place bulk inquiries through WhatsApp.
-              </p>
-            </div>
-
-            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-              <Store className="mb-3 h-6 w-6 text-green-700" />
-              <h4 className="text-xl font-bold">Visit Nursery</h4>
-              <p className="mt-2 text-slate-600">
-                Use Google Maps and contact before visit for smooth customer support and availability check.
-              </p>
             </div>
           </div>
         </section>
@@ -1117,4 +1133,353 @@ export default function Page() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-2xl bg-green-600 px-6 py-3 font-semibold text-white hover:bg-green-700"
                   >
-                    <Message
+                    <MessageCircle className="h-5 w-5" />
+                    Submit on WhatsApp
+                  </a>
+
+                  <a
+                    href={`tel:${phoneNumber}`}
+                    className="inline-flex items-center gap-2 rounded-2xl border border-slate-300 px-6 py-3 font-semibold hover:bg-slate-50"
+                  >
+                    <Phone className="h-5 w-5" />
+                    Call Now
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="rounded-[2rem] bg-green-900 p-8 text-white shadow-md">
+              <div className="mb-5 flex items-center gap-3">
+                <Package className="h-6 w-6 text-green-300" />
+                <h3 className="text-3xl font-bold">Cart & Quick Order</h3>
+              </div>
+
+              <div className="space-y-3">
+                {cart.length === 0 ? (
+                  <p className="rounded-2xl bg-white/10 p-4 text-green-100">
+                    No items added yet.
+                  </p>
+                ) : (
+                  cart.map((item) => (
+                    <div key={item.id} className="rounded-2xl bg-white/10 p-4">
+                      <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
+                        <div className="min-w-0">
+                          <p className="font-semibold">{item.name}</p>
+                          <p className="text-sm text-green-100">
+                            {rupee(item.price)} each • Qty: {item.qty} • Subtotal:{" "}
+                            {rupee(item.price * item.qty)}
+                          </p>
+                        </div>
+
+                        <div className="flex flex-wrap items-center gap-2">
+                          <button
+                            onClick={() => updateQty(item.id, "dec")}
+                            className="rounded-xl bg-white/20 px-3 py-2 text-lg font-bold"
+                          >
+                            -
+                          </button>
+
+                          <input
+                            type="text"
+                            inputMode="numeric"
+                            pattern="[0-9]*"
+                            value={qtyInputs[item.id] ?? String(item.qty)}
+                            onChange={(e) =>
+                              setQtyDirect(item.id, e.target.value.replace(/[^0-9]/g, ""))
+                            }
+                            onBlur={() => commitQtyInput(item.id)}
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter") {
+                                commitQtyInput(item.id);
+                                (e.target as HTMLInputElement).blur();
+                              }
+                            }}
+                            className="w-24 rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-center text-white outline-none"
+                          />
+
+                          <button
+                            onClick={() => updateQty(item.id, "inc")}
+                            className="rounded-xl bg-white/20 px-3 py-2 text-lg font-bold"
+                          >
+                            +
+                          </button>
+
+                          <button
+                            onClick={() => removeFromCart(item.id)}
+                            className="inline-flex items-center gap-2 rounded-xl bg-red-500/20 px-3 py-2 text-sm font-semibold text-white"
+                          >
+                            <Trash2 className="h-4 w-4" />
+                            Remove
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  ))
+                )}
+              </div>
+
+              <div className="mt-6 rounded-2xl bg-white/10 p-4">
+                <div className="flex items-center justify-between">
+                  <span>Total Items</span>
+                  <span className="font-semibold">{totalItems}</span>
+                </div>
+                <div className="mt-2 flex items-center justify-between">
+                  <span>Total Price</span>
+                  <span className="text-xl font-bold">{rupee(totalPrice)}</span>
+                </div>
+              </div>
+
+              <div className="mt-6 flex flex-wrap gap-3">
+                <a
+                  href={`https://wa.me/${whatsappNumber}?text=${whatsappCartMessage}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-2 rounded-2xl bg-white px-6 py-3 font-semibold text-green-900 hover:bg-green-50"
+                >
+                  <MessageCircle className="h-5 w-5" />
+                  Order on WhatsApp
+                </a>
+
+                <a
+                  href={`tel:${phoneNumber}`}
+                  className="inline-flex items-center gap-2 rounded-2xl border border-white/30 px-6 py-3 font-semibold hover:bg-white/10"
+                >
+                  <Phone className="h-5 w-5" />
+                  Call for Order
+                </a>
+
+                <button
+                  onClick={clearCart}
+                  className="rounded-2xl border border-white/30 px-6 py-3 font-semibold hover:bg-white/10"
+                >
+                  Clear Cart
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
+          <div className="rounded-[2rem] bg-green-600 px-8 py-10 text-white shadow-lg">
+            <div className="grid gap-6 lg:grid-cols-2 lg:items-center">
+              <div>
+                <h3 className="text-3xl font-bold">Need bulk trees for your project?</h3>
+                <p className="mt-3 text-green-50">
+                  Contact Shiva Parvathi Nursery for farm supply, layout plantation,
+                  schools, resorts, roadside planting, and custom bulk orders.
+                </p>
+              </div>
+              <div className="flex flex-wrap gap-3 lg:justify-end">
+                <a
+                  href={`tel:${phoneNumber}`}
+                  className="rounded-2xl bg-white px-6 py-3 font-semibold text-green-700 hover:bg-green-50"
+                >
+                  Call Now
+                </a>
+                <a
+                  href={`https://wa.me/${whatsappNumber}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-2xl border border-white/30 px-6 py-3 font-semibold text-white hover:bg-white/10"
+                >
+                  WhatsApp Now
+                </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
+          <div className="mb-6">
+            <h3 className="text-3xl font-bold">Customer Reviews</h3>
+            <p className="text-slate-500">Simple review section for your business website.</p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {reviews.map((review) => (
+              <div key={review.name} className="rounded-[1.75rem] bg-white p-6 shadow-sm">
+                <div className="mb-3 flex text-amber-500">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-4 w-4 fill-current" />
+                  ))}
+                </div>
+                <p className="text-slate-600">“{review.text}”</p>
+                <p className="mt-4 font-semibold">{review.name}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
+          <div className="mb-6 flex items-center gap-3">
+            <CircleHelp className="h-6 w-6 text-green-700" />
+            <div>
+              <h3 className="text-3xl font-bold">Frequently Asked Questions</h3>
+              <p className="text-slate-500">Common questions customers may ask before ordering.</p>
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            {faqs.map((faq) => (
+              <div key={faq.q} className="rounded-[1.5rem] bg-white p-6 shadow-sm">
+                <h4 className="text-lg font-bold">{faq.q}</h4>
+                <p className="mt-2 text-slate-600">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <footer id="contact" className="border-t border-slate-200 bg-white">
+          <div className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
+            <div className="grid gap-8 lg:grid-cols-4">
+              <div>
+                <div className="flex items-center gap-3">
+                  <div className="rounded-2xl bg-green-600 p-3 text-white">
+                    <Leaf className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-bold">{nurseryName}</h4>
+                    <p className="text-sm text-slate-500">Karnataka Nursery Business</p>
+                  </div>
+                </div>
+                <p className="mt-4 text-slate-600">
+                  Professional tree shopping website for retail, booking, and bulk orders.
+                </p>
+              </div>
+
+              <div>
+                <h5 className="font-bold">Owner</h5>
+                <p className="mt-3 text-slate-600">{ownerName}</p>
+                <a href={`tel:${phoneNumber}`} className="mt-2 block text-green-700 hover:underline">
+                  {phoneNumber}
+                </a>
+              </div>
+
+              <div>
+                <h5 className="font-bold">Address</h5>
+                <p className="mt-3 text-slate-600">{address}</p>
+              </div>
+
+              <div>
+                <h5 className="font-bold">Quick Links</h5>
+                <div className="mt-3 space-y-2">
+                  <a
+                    href={mapsLink}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-green-700 hover:underline"
+                  >
+                    Open Google Maps
+                  </a>
+                  <a
+                    href={`https://wa.me/${whatsappNumber}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block text-green-700 hover:underline"
+                  >
+                    WhatsApp Inquiry
+                  </a>
+                  <a href="#gallery" className="block text-green-700 hover:underline">
+                    Nursery Gallery
+                  </a>
+                  <a href="#booking" className="block text-green-700 hover:underline">
+                    Bulk Booking
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-8 flex flex-col gap-3 border-t border-slate-200 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
+              <p>© 2026 {nurseryName}. All rights reserved.</p>
+              <p>Official nursery website for India-focused and global customer access.</p>
+            </div>
+          </div>
+        </footer>
+      </main>
+
+      {selectedProduct && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
+          <div className="relative max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-[2rem] bg-white p-6 shadow-2xl">
+            <button
+              onClick={() => setSelectedProduct(null)}
+              className="absolute right-4 top-4 rounded-full bg-slate-100 p-2 hover:bg-slate-200"
+            >
+              <X className="h-5 w-5" />
+            </button>
+
+            <div className="grid gap-8 md:grid-cols-2">
+              <img
+                src={selectedProduct.image}
+                alt={selectedProduct.name.en}
+                className="h-full min-h-[320px] w-full rounded-[1.5rem] object-cover"
+              />
+
+              <div>
+                <p className="text-sm font-medium text-green-700">{selectedProduct.category}</p>
+                <h3 className="mt-2 text-3xl font-bold">{selectedProduct.name.en}</h3>
+                <p className="mt-2 text-lg text-slate-600">{selectedProduct.name.kn}</p>
+                <p className="text-lg text-slate-600">{selectedProduct.name.te}</p>
+
+                <div className="mt-4 flex items-center gap-1 text-amber-500">
+                  <Star className="h-5 w-5 fill-current" />
+                  <span className="font-medium">{selectedProduct.rating}</span>
+                </div>
+
+                <p className="mt-4 leading-7 text-slate-600">{selectedProduct.description}</p>
+
+                <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                  <div className="rounded-2xl bg-slate-50 p-4">
+                    <p className="text-sm text-slate-500">Price</p>
+                    <p className="text-2xl font-bold">{rupee(selectedProduct.price)}</p>
+                    {selectedProduct.oldPrice && (
+                      <p className="text-sm text-slate-400 line-through">
+                        {rupee(selectedProduct.oldPrice)}
+                      </p>
+                    )}
+                  </div>
+                  <div className="rounded-2xl bg-slate-50 p-4">
+                    <p className="text-sm text-slate-500">Size</p>
+                    <p className="text-2xl font-bold">{selectedProduct.size}</p>
+                  </div>
+                  <div className="rounded-2xl bg-slate-50 p-4">
+                    <p className="text-sm text-slate-500">Stock</p>
+                    <p className="text-lg font-bold">{selectedProduct.stock}</p>
+                  </div>
+                  <div className="rounded-2xl bg-slate-50 p-4">
+                    <p className="text-sm text-slate-500">Best For</p>
+                    <p className="text-lg font-bold">Home / Farm / Landscape</p>
+                  </div>
+                </div>
+
+                <div className="mt-6 rounded-2xl border border-green-100 bg-green-50 p-4">
+                  <p className="font-semibold text-green-800">Plant Care Note</p>
+                  <p className="mt-2 text-sm leading-6 text-green-900">
+                    Water regularly after planting, provide sunlight based on plant type,
+                    and contact the nursery for bulk-order guidance and planting support.
+                  </p>
+                </div>
+
+                <div className="mt-6 flex flex-wrap gap-3">
+                  <button
+                    onClick={() => addToCart(selectedProduct)}
+                    className="rounded-2xl bg-green-600 px-6 py-3 font-semibold text-white hover:bg-green-700"
+                  >
+                    Add to Cart
+                  </button>
+                  <a
+                    href={`https://wa.me/${whatsappNumber}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="rounded-2xl border border-green-300 px-6 py-3 font-semibold text-green-700 hover:bg-green-50"
+                  >
+                    Ask on WhatsApp
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
