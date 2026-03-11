@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   Search,
   ShoppingCart,
@@ -29,9 +29,9 @@ import {
   Building2,
   Shield,
   CalendarDays,
-  BadgeIndianRupee,
   Clock3,
-  Camera,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 
 type Product = {
@@ -66,14 +66,6 @@ const whatsappNumber = "919989149977";
 const mapsLink = "https://maps.app.goo.gl/mFTcxUavfxQipUjj7?g_st=ic";
 const address =
   "Sri Nanjundeshwara Industries Bangalore main road, Urdigere, Hanumanthapura, Cross, Koratagere, Karnataka 572129, India";
-
-/**
- * Replace these later with your real live links after launch:
- * 1) domainUrl -> your real domain
- * 2) googleBusinessProfileUrl -> your real Google Business Profile link
- */
-const domainUrl = "https://www.sivaparvathinursery.in";
-const googleBusinessProfileUrl = "#";
 
 const businessHours = [
   { day: "Monday", time: "8:00 AM - 6:00 PM" },
@@ -201,15 +193,44 @@ const products: Product[] = [
     description:
       "Sweet sapota plant for backyard fruit gardens and nurseries.",
   },
+  {
+    id: 9,
+    name: { en: "Tamarind Tree", kn: "ಹುಣಸೆ ಮರ", te: "చింత చెట్టు" },
+    category: "Native Trees",
+    price: 239,
+    oldPrice: 290,
+    size: "4 ft",
+    stock: "In Stock",
+    rating: 4.6,
+    image:
+      "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80",
+    description:
+      "Strong tamarind sapling for farms, roadsides, and native planting.",
+  },
+  {
+    id: 10,
+    name: { en: "Jackfruit Tree", kn: "ಹಲಸಿನ ಮರ", te: "పనస చెట్టు" },
+    category: "Fruit Trees",
+    price: 329,
+    oldPrice: 390,
+    size: "4 ft",
+    stock: "In Stock",
+    rating: 4.8,
+    image:
+      "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1200&q=80",
+    description:
+      "Healthy jackfruit plant suitable for home gardens and farms.",
+  },
 ];
 
 const categories = ["All", "Fruit Trees", "Native Trees", "Decorative Trees"];
 
 const galleryImages = [
-  "https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1501004318641-b39e6451bec6?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?auto=format&fit=crop&w=1200&q=80",
-  "https://images.unsplash.com/photo-1518495973542-4542c06a5843?auto=format&fit=crop&w=1200&q=80",
+  "/gallery/1.jpg",
+  "/gallery/2.jpg",
+  "/gallery/3.jpg",
+  "/gallery/4.jpg",
+  "/gallery/5.jpg",
 ];
 
 const reviews = [
@@ -257,6 +278,7 @@ export default function Page() {
   const [cart, setCart] = useState<CartItem[]>([]);
   const [qtyInputs, setQtyInputs] = useState<Record<number, string>>({});
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
   const [booking, setBooking] = useState({
     name: "",
     phone: "",
@@ -265,6 +287,14 @@ export default function Page() {
     quantity: "",
     notes: "",
   });
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
+    }, 3500);
+
+    return () => clearInterval(timer);
+  }, []);
 
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
@@ -376,6 +406,16 @@ export default function Page() {
     }));
   };
 
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % galleryImages.length);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) =>
+      prev === 0 ? galleryImages.length - 1 : prev - 1
+    );
+  };
+
   const totalItems = cart.reduce((sum, item) => sum + item.qty, 0);
   const totalPrice = cart.reduce((sum, item) => sum + item.qty * item.price, 0);
 
@@ -396,26 +436,8 @@ export default function Page() {
     `Hello ${ownerName}, I want to book trees from ${nurseryName}.\n\nName: ${booking.name}\nPhone: ${booking.phone}\nLocation: ${booking.location}\nTree Type: ${booking.treeType}\nQuantity: ${booking.quantity}\nNotes: ${booking.notes}`
   );
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@type": "GardenStore",
-    name: nurseryName,
-    telephone: phoneNumber,
-    url: domainUrl,
-    sameAs: [mapsLink],
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: address,
-      addressCountry: "IN",
-    },
-  };
-
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
       <main className="min-h-screen bg-[#f6f8f3] text-slate-900">
         <header className="sticky top-0 z-40 border-b border-slate-200 bg-white/95 backdrop-blur">
           <div className="mx-auto flex max-w-7xl items-center justify-between gap-4 px-4 py-4 lg:px-8">
@@ -432,13 +454,24 @@ export default function Page() {
             </div>
 
             <div className="hidden items-center gap-6 md:flex">
-              <a href="#shop" className="text-sm font-medium hover:text-green-700">Shop</a>
-              <a href="#about" className="text-sm font-medium hover:text-green-700">About</a>
-              <a href="#launch" className="text-sm font-medium hover:text-green-700">Launch</a>
-              <a href="#gallery" className="text-sm font-medium hover:text-green-700">Gallery</a>
-              <a href="#services" className="text-sm font-medium hover:text-green-700">Services</a>
-              <a href="#booking" className="text-sm font-medium hover:text-green-700">Booking</a>
-              <a href="#contact" className="text-sm font-medium hover:text-green-700">Contact</a>
+              <a href="#shop" className="text-sm font-medium hover:text-green-700">
+                Shop
+              </a>
+              <a href="#about" className="text-sm font-medium hover:text-green-700">
+                About
+              </a>
+              <a href="#gallery" className="text-sm font-medium hover:text-green-700">
+                Gallery
+              </a>
+              <a href="#services" className="text-sm font-medium hover:text-green-700">
+                Services
+              </a>
+              <a href="#booking" className="text-sm font-medium hover:text-green-700">
+                Booking
+              </a>
+              <a href="#contact" className="text-sm font-medium hover:text-green-700">
+                Contact
+              </a>
             </div>
 
             <div className="flex items-center gap-3">
@@ -473,10 +506,16 @@ export default function Page() {
             </p>
 
             <div className="mt-8 flex flex-wrap gap-3">
-              <a href="#shop" className="rounded-2xl bg-green-600 px-6 py-3 font-semibold text-white hover:bg-green-700">
+              <a
+                href="#shop"
+                className="rounded-2xl bg-green-600 px-6 py-3 font-semibold text-white hover:bg-green-700"
+              >
                 Shop Now
               </a>
-              <a href="#booking" className="rounded-2xl border border-slate-300 px-6 py-3 font-semibold hover:bg-white">
+              <a
+                href="#booking"
+                className="rounded-2xl border border-slate-300 px-6 py-3 font-semibold hover:bg-white"
+              >
                 Bulk Booking
               </a>
               <a
@@ -510,14 +549,45 @@ export default function Page() {
 
           <div className="overflow-hidden rounded-[2rem] bg-white p-3 shadow-xl">
             <img
-              src="https://images.unsplash.com/photo-1466692476868-aef1dfb1e735?auto=format&fit=crop&w=1400&q=80"
-              alt="Nursery hero"
+              src="/gallery/1.jpg"
+              alt="Shiva Parvathi Nursery hero"
               className="h-full min-h-[360px] w-full rounded-[1.5rem] object-cover"
             />
           </div>
         </section>
 
-
+        <section className="mx-auto max-w-7xl px-4 pb-6 lg:px-8">
+          <div className="grid gap-4 md:grid-cols-4">
+            <div className="rounded-3xl bg-white p-5 shadow-sm">
+              <Sprout className="mb-2 h-5 w-5 text-green-700" />
+              <p className="text-sm text-slate-500">Healthy Plants</p>
+              <p className="font-semibold">
+                Quality nursery plants for home gardens, farms, and landscaping.
+              </p>
+            </div>
+            <div className="rounded-3xl bg-white p-5 shadow-sm">
+              <Truck className="mb-2 h-5 w-5 text-green-700" />
+              <p className="text-sm text-slate-500">Bulk Orders</p>
+              <p className="font-semibold">
+                Bulk tree supply for farms, schools, layouts, and plantations.
+              </p>
+            </div>
+            <div className="rounded-3xl bg-white p-5 shadow-sm">
+              <Trees className="mb-2 h-5 w-5 text-green-700" />
+              <p className="text-sm text-slate-500">Fruit Trees</p>
+              <p className="font-semibold">
+                Mango, Guava, Sapota, Coconut, Jamun, Jackfruit, and more.
+              </p>
+            </div>
+            <div className="rounded-3xl bg-white p-5 shadow-sm">
+              <ShieldCheck className="mb-2 h-5 w-5 text-green-700" />
+              <p className="text-sm text-slate-500">Native Trees</p>
+              <p className="font-semibold">
+                Neem, Banyan, Tamarind, Ashoka, and other traditional trees.
+              </p>
+            </div>
+          </div>
+        </section>
 
         <section className="mx-auto max-w-7xl px-4 pb-6 lg:px-8">
           <div className="grid gap-4 md:grid-cols-4">
@@ -610,6 +680,94 @@ export default function Page() {
           </div>
         </section>
 
+        <section id="gallery" className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
+          <div className="mb-6 flex items-center gap-3">
+            <ImageIcon className="h-6 w-6 text-green-700" />
+            <div>
+              <h3 className="text-3xl font-bold">Nursery Gallery</h3>
+              <p className="text-slate-500">
+                Explore real nursery photos, healthy plants, and plantation stock from Shiva Parvathi Nursery.
+              </p>
+            </div>
+          </div>
+
+          <div className="overflow-hidden rounded-[2rem] bg-white p-4 shadow-md">
+            <div className="relative">
+              <img
+                src={galleryImages[currentSlide]}
+                alt={`Nursery Gallery ${currentSlide + 1}`}
+                className="h-[260px] w-full rounded-[1.5rem] object-cover sm:h-[380px] lg:h-[520px]"
+              />
+
+              <button
+                onClick={prevSlide}
+                className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow hover:bg-white"
+              >
+                <ChevronLeft className="h-5 w-5 text-slate-800" />
+              </button>
+
+              <button
+                onClick={nextSlide}
+                className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 p-3 shadow hover:bg-white"
+              >
+                <ChevronRight className="h-5 w-5 text-slate-800" />
+              </button>
+            </div>
+
+            <div className="mt-4 flex items-center justify-center gap-2">
+              {galleryImages.map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`h-3 w-3 rounded-full transition ${
+                    currentSlide === index ? "bg-green-600" : "bg-slate-300"
+                  }`}
+                />
+              ))}
+            </div>
+
+            <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+              {galleryImages.map((img, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentSlide(index)}
+                  className={`overflow-hidden rounded-2xl border-2 transition ${
+                    currentSlide === index
+                      ? "border-green-600"
+                      : "border-transparent hover:border-green-300"
+                  }`}
+                >
+                  <img
+                    src={img}
+                    alt={`Thumbnail ${index + 1}`}
+                    className="h-24 w-full object-cover"
+                  />
+                </button>
+              ))}
+            </div>
+
+            <div className="mt-6 flex flex-wrap gap-3">
+              <a
+                href={mapsLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-2xl bg-green-600 px-6 py-3 font-semibold text-white hover:bg-green-700"
+              >
+                View More on Google Maps
+              </a>
+
+              <a
+                href={`https://wa.me/${whatsappNumber}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="rounded-2xl border border-green-300 px-6 py-3 font-semibold text-green-700 hover:bg-green-50"
+              >
+                Ask on WhatsApp
+              </a>
+            </div>
+          </div>
+        </section>
+
         <section id="services" className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
           <div className="mb-6">
             <h3 className="text-3xl font-bold">Services & Support</h3>
@@ -646,6 +804,34 @@ export default function Page() {
         </section>
 
         <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
+          <div className="grid gap-6 md:grid-cols-3">
+            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
+              <MapPin className="mb-3 h-6 w-6 text-green-700" />
+              <h4 className="text-xl font-bold">Service Area</h4>
+              <p className="mt-2 text-slate-600">
+                Main focus on Karnataka and India orders, with website access globally for inquiries and bulk discussions.
+              </p>
+            </div>
+
+            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
+              <CalendarDays className="mb-3 h-6 w-6 text-green-700" />
+              <h4 className="text-xl font-bold">Advance Booking</h4>
+              <p className="mt-2 text-slate-600">
+                Customers can pre-book trees for future plantation drives, events, and site projects.
+              </p>
+            </div>
+
+            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
+              <Shield className="mb-3 h-6 w-6 text-green-700" />
+              <h4 className="text-xl font-bold">Trusted Support</h4>
+              <p className="mt-2 text-slate-600">
+                Direct owner contact helps buyers discuss availability, quantities, and special project needs quickly.
+              </p>
+            </div>
+          </div>
+        </section>
+
+        <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-4">
             <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
               <Clock3 className="mb-3 h-6 w-6 text-green-700" />
@@ -662,54 +848,85 @@ export default function Page() {
 
             <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
               <Globe className="mb-3 h-6 w-6 text-green-700" />
-              <h4 className="text-xl font-bold">Official Domain</h4>
-              <p className="mt-2 text-slate-600">
-                Replace placeholder with your real live domain after deployment.
-              </p>
-              <p className="mt-3 break-all text-sm font-semibold text-green-700">
-                {domainUrl}
-              </p>
-            </div>
-
-            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-              <Store className="mb-3 h-6 w-6 text-green-700" />
-              <h4 className="text-xl font-bold">Google Business</h4>
-              <p className="mt-2 text-slate-600">
-                Add your real Google Business Profile link after profile setup.
-              </p>
-              <a
-                href={googleBusinessProfileUrl}
-                className="mt-3 inline-block text-sm font-semibold text-green-700 hover:underline"
-              >
-                Add business profile link
-              </a>
-            </div>
-
-            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-              <BadgeIndianRupee className="mb-3 h-6 w-6 text-green-700" />
               <h4 className="text-xl font-bold">India + Global Reach</h4>
               <p className="mt-2 text-slate-600">
                 Main customer focus can be India, while the website stays globally accessible.
               </p>
             </div>
-          </div>
-        </section>
 
-        <section id="gallery" className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
-          <div className="mb-6 flex items-center gap-3">
-            <ImageIcon className="h-6 w-6 text-green-700" />
-            <div>
-              <h3 className="text-3xl font-bold">Nursery Gallery</h3>
-              <p className="text-slate-500">
-                Replace these sample photos with your real nursery images before launch.
+            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
+              <ShieldCheck className="mb-3 h-6 w-6 text-green-700" />
+              <h4 className="text-xl font-bold">Trusted Nursery</h4>
+              <p className="mt-2 text-slate-600">
+                Customers can directly call, visit, or place bulk inquiries through WhatsApp.
+              </p>
+            </div>
+
+            <div className="rounded-[1.75rem] bg-white p-6 shadow-sm">
+              <Store className="mb-3 h-6 w-6 text-green-700" />
+              <h4 className="text-xl font-bold">Visit Nursery</h4>
+              <p className="mt-2 text-slate-600">
+                Use Google Maps and contact before visit for smooth customer support and availability check.
               </p>
             </div>
           </div>
+        </section>
 
-          <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
-            {galleryImages.map((img, index) => (
-              <div key={index} className="overflow-hidden rounded-[1.75rem] bg-white shadow-md">
-                <img src={img} alt={`Gallery ${index + 1}`} className="h-72 w-full object-cover" />
+        <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
+          <div className="mb-6">
+            <h3 className="text-3xl font-bold">Featured Trees</h3>
+            <p className="text-slate-500">
+              Top picks for homes, farms, and landscapes.
+            </p>
+          </div>
+
+          <div className="grid gap-6 md:grid-cols-3">
+            {featuredProducts.map((product) => (
+              <div
+                key={product.id}
+                className="overflow-hidden rounded-[1.75rem] bg-white shadow-md"
+              >
+                <img
+                  src={product.image}
+                  alt={product.name.en}
+                  className="h-56 w-full object-cover"
+                />
+                <div className="p-5">
+                  <p className="text-sm font-medium text-green-700">{product.category}</p>
+                  <h4 className="mt-1 text-xl font-bold">{product.name.en}</h4>
+                  <p className="mt-1 text-sm text-slate-600">{product.name.kn}</p>
+                  <p className="text-sm text-slate-600">{product.name.te}</p>
+
+                  <p className="mt-3 text-sm text-slate-600">{product.description}</p>
+                  <div className="mt-3 flex items-center gap-1 text-amber-500">
+                    <Star className="h-4 w-4 fill-current" />
+                    <span className="text-sm">{product.rating}</span>
+                  </div>
+                  <div className="mt-4 flex items-center justify-between">
+                    <div>
+                      <p className="text-2xl font-bold">{rupee(product.price)}</p>
+                      {product.oldPrice && (
+                        <p className="text-sm text-slate-400 line-through">
+                          {rupee(product.oldPrice)}
+                        </p>
+                      )}
+                    </div>
+                    <div className="flex gap-2">
+                      <button
+                        onClick={() => setSelectedProduct(product)}
+                        className="rounded-2xl border border-slate-300 px-4 py-2 font-semibold hover:bg-slate-50"
+                      >
+                        View
+                      </button>
+                      <button
+                        onClick={() => addToCart(product)}
+                        className="rounded-2xl bg-green-600 px-4 py-2 font-semibold text-white hover:bg-green-700"
+                      >
+                        Add
+                      </button>
+                    </div>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
@@ -765,9 +982,16 @@ export default function Page() {
 
           <div className="grid gap-6 md:grid-cols-2 xl:grid-cols-4">
             {filteredProducts.map((product) => (
-              <div key={product.id} className="overflow-hidden rounded-[1.75rem] bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl">
+              <div
+                key={product.id}
+                className="overflow-hidden rounded-[1.75rem] bg-white shadow-md transition hover:-translate-y-1 hover:shadow-xl"
+              >
                 <div className="relative">
-                  <img src={product.image} alt={product.name.en} className="h-64 w-full object-cover" />
+                  <img
+                    src={product.image}
+                    alt={product.name.en}
+                    className="h-64 w-full object-cover"
+                  />
                   <button
                     onClick={() => toggleWishlist(product.id)}
                     className="absolute right-4 top-4 rounded-full bg-white p-3 shadow"
@@ -893,353 +1117,4 @@ export default function Page() {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 rounded-2xl bg-green-600 px-6 py-3 font-semibold text-white hover:bg-green-700"
                   >
-                    <MessageCircle className="h-5 w-5" />
-                    Submit on WhatsApp
-                  </a>
-
-                  <a
-                    href={`tel:${phoneNumber}`}
-                    className="inline-flex items-center gap-2 rounded-2xl border border-slate-300 px-6 py-3 font-semibold hover:bg-slate-50"
-                  >
-                    <Phone className="h-5 w-5" />
-                    Call Now
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="rounded-[2rem] bg-green-900 p-8 text-white shadow-md">
-              <div className="mb-5 flex items-center gap-3">
-                <Package className="h-6 w-6 text-green-300" />
-                <h3 className="text-3xl font-bold">Cart & Quick Order</h3>
-              </div>
-
-              <div className="space-y-3">
-                {cart.length === 0 ? (
-                  <p className="rounded-2xl bg-white/10 p-4 text-green-100">
-                    No items added yet.
-                  </p>
-                ) : (
-                  cart.map((item) => (
-                    <div key={item.id} className="rounded-2xl bg-white/10 p-4">
-                      <div className="flex flex-col gap-4 xl:flex-row xl:items-center xl:justify-between">
-                        <div className="min-w-0">
-                          <p className="font-semibold">{item.name}</p>
-                          <p className="text-sm text-green-100">
-                            {rupee(item.price)} each • Qty: {item.qty} • Subtotal:{" "}
-                            {rupee(item.price * item.qty)}
-                          </p>
-                        </div>
-
-                        <div className="flex flex-wrap items-center gap-2">
-                          <button
-                            onClick={() => updateQty(item.id, "dec")}
-                            className="rounded-xl bg-white/20 px-3 py-2 text-lg font-bold"
-                          >
-                            -
-                          </button>
-
-                          <input
-                            type="text"
-                            inputMode="numeric"
-                            pattern="[0-9]*"
-                            value={qtyInputs[item.id] ?? String(item.qty)}
-                            onChange={(e) =>
-                              setQtyDirect(item.id, e.target.value.replace(/[^0-9]/g, ""))
-                            }
-                            onBlur={() => commitQtyInput(item.id)}
-                            onKeyDown={(e) => {
-                              if (e.key === "Enter") {
-                                commitQtyInput(item.id);
-                                (e.target as HTMLInputElement).blur();
-                              }
-                            }}
-                            className="w-24 rounded-xl border border-white/20 bg-white/10 px-3 py-2 text-center text-white outline-none"
-                          />
-
-                          <button
-                            onClick={() => updateQty(item.id, "inc")}
-                            className="rounded-xl bg-white/20 px-3 py-2 text-lg font-bold"
-                          >
-                            +
-                          </button>
-
-                          <button
-                            onClick={() => removeFromCart(item.id)}
-                            className="inline-flex items-center gap-2 rounded-xl bg-red-500/20 px-3 py-2 text-sm font-semibold text-white"
-                          >
-                            <Trash2 className="h-4 w-4" />
-                            Remove
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  ))
-                )}
-              </div>
-
-              <div className="mt-6 rounded-2xl bg-white/10 p-4">
-                <div className="flex items-center justify-between">
-                  <span>Total Items</span>
-                  <span className="font-semibold">{totalItems}</span>
-                </div>
-                <div className="mt-2 flex items-center justify-between">
-                  <span>Total Price</span>
-                  <span className="text-xl font-bold">{rupee(totalPrice)}</span>
-                </div>
-              </div>
-
-              <div className="mt-6 flex flex-wrap gap-3">
-                <a
-                  href={`https://wa.me/${whatsappNumber}?text=${whatsappCartMessage}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 rounded-2xl bg-white px-6 py-3 font-semibold text-green-900 hover:bg-green-50"
-                >
-                  <MessageCircle className="h-5 w-5" />
-                  Order on WhatsApp
-                </a>
-
-                <a
-                  href={`tel:${phoneNumber}`}
-                  className="inline-flex items-center gap-2 rounded-2xl border border-white/30 px-6 py-3 font-semibold hover:bg-white/10"
-                >
-                  <Phone className="h-5 w-5" />
-                  Call for Order
-                </a>
-
-                <button
-                  onClick={clearCart}
-                  className="rounded-2xl border border-white/30 px-6 py-3 font-semibold hover:bg-white/10"
-                >
-                  Clear Cart
-                </button>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
-          <div className="rounded-[2rem] bg-green-600 px-8 py-10 text-white shadow-lg">
-            <div className="grid gap-6 lg:grid-cols-2 lg:items-center">
-              <div>
-                <h3 className="text-3xl font-bold">Need bulk trees for your project?</h3>
-                <p className="mt-3 text-green-50">
-                  Contact Siva Parvathi Nursery for farm supply, layout plantation,
-                  schools, resorts, roadside planting, and custom bulk orders.
-                </p>
-              </div>
-              <div className="flex flex-wrap gap-3 lg:justify-end">
-                <a
-                  href={`tel:${phoneNumber}`}
-                  className="rounded-2xl bg-white px-6 py-3 font-semibold text-green-700 hover:bg-green-50"
-                >
-                  Call Now
-                </a>
-                <a
-                  href={`https://wa.me/${whatsappNumber}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="rounded-2xl border border-white/30 px-6 py-3 font-semibold text-white hover:bg-white/10"
-                >
-                  WhatsApp Now
-                </a>
-              </div>
-            </div>
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
-          <div className="mb-6">
-            <h3 className="text-3xl font-bold">Customer Reviews</h3>
-            <p className="text-slate-500">Simple review section for your business website.</p>
-          </div>
-
-          <div className="grid gap-6 md:grid-cols-3">
-            {reviews.map((review) => (
-              <div key={review.name} className="rounded-[1.75rem] bg-white p-6 shadow-sm">
-                <div className="mb-3 flex text-amber-500">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-current" />
-                  ))}
-                </div>
-                <p className="text-slate-600">“{review.text}”</p>
-                <p className="mt-4 font-semibold">{review.name}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <section className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
-          <div className="mb-6 flex items-center gap-3">
-            <CircleHelp className="h-6 w-6 text-green-700" />
-            <div>
-              <h3 className="text-3xl font-bold">Frequently Asked Questions</h3>
-              <p className="text-slate-500">Common questions customers may ask before ordering.</p>
-            </div>
-          </div>
-
-          <div className="space-y-4">
-            {faqs.map((faq) => (
-              <div key={faq.q} className="rounded-[1.5rem] bg-white p-6 shadow-sm">
-                <h4 className="text-lg font-bold">{faq.q}</h4>
-                <p className="mt-2 text-slate-600">{faq.a}</p>
-              </div>
-            ))}
-          </div>
-        </section>
-
-        <footer id="contact" className="border-t border-slate-200 bg-white">
-          <div className="mx-auto max-w-7xl px-4 py-10 lg:px-8">
-            <div className="grid gap-8 lg:grid-cols-4">
-              <div>
-                <div className="flex items-center gap-3">
-                  <div className="rounded-2xl bg-green-600 p-3 text-white">
-                    <Leaf className="h-5 w-5" />
-                  </div>
-                  <div>
-                    <h4 className="text-xl font-bold">{nurseryName}</h4>
-                    <p className="text-sm text-slate-500">Karnataka Nursery Business</p>
-                  </div>
-                </div>
-                <p className="mt-4 text-slate-600">
-                  Professional tree shopping website for retail, booking, and bulk orders.
-                </p>
-              </div>
-
-              <div>
-                <h5 className="font-bold">Owner</h5>
-                <p className="mt-3 text-slate-600">{ownerName}</p>
-                <a href={`tel:${phoneNumber}`} className="mt-2 block text-green-700 hover:underline">
-                  {phoneNumber}
-                </a>
-              </div>
-
-              <div>
-                <h5 className="font-bold">Address</h5>
-                <p className="mt-3 text-slate-600">{address}</p>
-              </div>
-
-              <div>
-                <h5 className="font-bold">Quick Links</h5>
-                <div className="mt-3 space-y-2">
-                  <a
-                    href={mapsLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-green-700 hover:underline"
-                  >
-                    Open Google Maps
-                  </a>
-                  <a
-                    href={`https://wa.me/${whatsappNumber}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="block text-green-700 hover:underline"
-                  >
-                    WhatsApp Inquiry
-                  </a>
-                  <a href="#gallery" className="block text-green-700 hover:underline">
-                    Nursery Gallery
-                  </a>
-                  <a href="#booking" className="block text-green-700 hover:underline">
-                    Bulk Booking
-                  </a>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 flex flex-col gap-3 border-t border-slate-200 pt-6 text-sm text-slate-500 md:flex-row md:items-center md:justify-between">
-              <p>© 2026 {nurseryName}. All rights reserved.</p>
-              <p>Official nursery website for India-focused and global customer access.</p>
-            </div>
-          </div>
-        </footer>
-      </main>
-
-      {selectedProduct && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 p-4">
-          <div className="relative max-h-[90vh] w-full max-w-5xl overflow-y-auto rounded-[2rem] bg-white p-6 shadow-2xl">
-            <button
-              onClick={() => setSelectedProduct(null)}
-              className="absolute right-4 top-4 rounded-full bg-slate-100 p-2 hover:bg-slate-200"
-            >
-              <X className="h-5 w-5" />
-            </button>
-
-            <div className="grid gap-8 md:grid-cols-2">
-              <img
-                src={selectedProduct.image}
-                alt={selectedProduct.name.en}
-                className="h-full min-h-[320px] w-full rounded-[1.5rem] object-cover"
-              />
-
-              <div>
-                <p className="text-sm font-medium text-green-700">{selectedProduct.category}</p>
-                <h3 className="mt-2 text-3xl font-bold">{selectedProduct.name.en}</h3>
-                <p className="mt-2 text-lg text-slate-600">{selectedProduct.name.kn}</p>
-                <p className="text-lg text-slate-600">{selectedProduct.name.te}</p>
-
-                <div className="mt-4 flex items-center gap-1 text-amber-500">
-                  <Star className="h-5 w-5 fill-current" />
-                  <span className="font-medium">{selectedProduct.rating}</span>
-                </div>
-
-                <p className="mt-4 leading-7 text-slate-600">{selectedProduct.description}</p>
-
-                <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm text-slate-500">Price</p>
-                    <p className="text-2xl font-bold">{rupee(selectedProduct.price)}</p>
-                    {selectedProduct.oldPrice && (
-                      <p className="text-sm text-slate-400 line-through">
-                        {rupee(selectedProduct.oldPrice)}
-                      </p>
-                    )}
-                  </div>
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm text-slate-500">Size</p>
-                    <p className="text-2xl font-bold">{selectedProduct.size}</p>
-                  </div>
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm text-slate-500">Stock</p>
-                    <p className="text-lg font-bold">{selectedProduct.stock}</p>
-                  </div>
-                  <div className="rounded-2xl bg-slate-50 p-4">
-                    <p className="text-sm text-slate-500">Best For</p>
-                    <p className="text-lg font-bold">Home / Farm / Landscape</p>
-                  </div>
-                </div>
-
-                <div className="mt-6 rounded-2xl border border-green-100 bg-green-50 p-4">
-                  <p className="font-semibold text-green-800">Plant Care Note</p>
-                  <p className="mt-2 text-sm leading-6 text-green-900">
-                    Water regularly after planting, provide sunlight based on plant type,
-                    and contact the nursery for bulk-order guidance and planting support.
-                  </p>
-                </div>
-
-                <div className="mt-6 flex flex-wrap gap-3">
-                  <button
-                    onClick={() => addToCart(selectedProduct)}
-                    className="rounded-2xl bg-green-600 px-6 py-3 font-semibold text-white hover:bg-green-700"
-                  >
-                    Add to Cart
-                  </button>
-                  <a
-                    href={`https://wa.me/${whatsappNumber}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="rounded-2xl border border-green-300 px-6 py-3 font-semibold text-green-700 hover:bg-green-50"
-                  >
-                    Ask on WhatsApp
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-    </>
-  );
-}
+                    <Message
